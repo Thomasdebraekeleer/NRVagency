@@ -1,0 +1,15 @@
+export const links = {
+  home: "/",
+  about: "/about",
+  work: "/work",
+  contact: "mailto:info@nrv.brussels",
+  email: "mailto:info@nrv.brussels",
+  resume: "/resume",
+  sourceCode: "https://github.com/vipulkumar-dev/portfolio",
+  github: "https://github.com/vipulkumar-dev",
+  linkedin: "https://be.linkedin.com/in/thomas-de-braekeleer/en",
+  twitter: "https://www.instagram.com/nrv.agency.brussels/",
+  telegram: "https://www.instagram.com/nrv.agency.brussels/",
+  instagram: "https://www.instagram.com/nrv.agency.brussels/",
+  facebook: "https://www.facebook.com/share/1FLfhtBEFd/?mibextid=wwXIfr",
+};
