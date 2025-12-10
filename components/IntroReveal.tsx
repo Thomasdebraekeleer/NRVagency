@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 
 type IntroRevealProps = {
@@ -171,42 +172,21 @@ export default function IntroReveal({
       aria-modal="true" 
       aria-label="Intro" 
       className="fixed inset-0 z-[99999] bg-black will-change-transform"
-      style={{ 
-        position: 'fixed !important',
-        top: '0 !important',
-        left: '0 !important',
-        width: '100vw !important',
-        height: '100vh !important',
-        zIndex: '999999 !important',
-        backgroundColor: '#000000 !important',
-        pointerEvents: 'auto !important',
-        display: 'block !important',
-        visibility: 'visible !important',
-        opacity: '1 !important'
-      }}
     >
       <div className="relative w-full h-full">
         {imgs.map((src, i) => (
-          <img
+          <Image
             key={i}
             ref={(el) => { 
               if (el) imgRefs.current[i] = el; 
             }}
             src={src}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+            fill
+            priority
+            className="object-cover select-none pointer-events-none"
+            sizes="100vw"
             draggable={false}
-            loading="eager"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              userSelect: 'none',
-              pointerEvents: 'none'
-            }}
           />
         ))}
         
