@@ -12,7 +12,6 @@ function ToneAndClear() {
   const { gl } = useThree();
   useEffect(() => {
     gl.toneMapping = THREE.ACESFilmicToneMapping;
-    // @ts-expect-error modern color space flag
     gl.outputColorSpace = THREE.SRGBColorSpace;
     gl.setClearColor(0x000000, 0); // alpha: transparent → on voit le fond du site
     gl.alpha = true; // Activer la transparence
