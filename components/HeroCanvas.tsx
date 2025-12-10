@@ -120,6 +120,8 @@ export default function HeroCanvas() {
           />
           <ChromaticAberration
             offset={isMobile ? new THREE.Vector2(0, 0) : new THREE.Vector2(0.0012, 0)}
+            radialModulation={false}
+            modulationOffset={0}
           />
         </EffectComposer>
       </Suspense>
