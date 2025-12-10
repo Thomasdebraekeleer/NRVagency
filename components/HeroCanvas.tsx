@@ -118,7 +118,9 @@ export default function HeroCanvas() {
             luminanceSmoothing={bloom.luminanceSmoothing}
             radius={bloom.radius}
           />
-          <ChromaticAberration offset={isMobile ? [0, 0] : [0.0012, 0]} />
+          <ChromaticAberration
+            offset={isMobile ? new THREE.Vector2(0, 0) : new THREE.Vector2(0.0012, 0)}
+          />
         </EffectComposer>
       </Suspense>
     </Canvas>
