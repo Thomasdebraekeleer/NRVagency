@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useEffect } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { Cursor } from "@/components/cursor";
 import { Header } from "@/components/header";
@@ -129,10 +130,13 @@ export default function WorkPage() {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={1200}
+                    height={900}
                     className="project-image w-full h-auto transition-transform duration-600 ease-out"
+                    priority={project.id === 1}
                   />
                   
                   <div 
