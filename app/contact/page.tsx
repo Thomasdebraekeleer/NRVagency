@@ -105,7 +105,7 @@ export default function ProfileForm() {
       <HeaderNavigation />
       <main className="darkGradient relative flex  w-full flex-col items-start justify-center px-paddingX py-paddingY text-[clamp(20px,_1.3vw_+_8px,_120px)] text-colorLight">
         <h1 className="mb-[1.5em] mt-[0.5em] text-[12.2vw] font-bold leading-[0.9] tracking-tight md:text-[clamp(16px,_6.3vw_+_8px,_120px)]">
-          Let's start a <br /> project together
+          Let&apos;s start a <br /> project together
         </h1>
         <Form {...form}>
           <form
@@ -117,7 +117,7 @@ export default function ProfileForm() {
               name="name"
               render={({ field }) => (
                 <FormItem className=" ">
-                  <FormLabel>What's your name?</FormLabel>
+                  <FormLabel>What&apos;s your name?</FormLabel>
                   <FormControl>
                     <Input type="text" placeholder="Your Name" {...field} />
                   </FormControl>
@@ -130,7 +130,7 @@ export default function ProfileForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>What's your email?</FormLabel>
+                  <FormLabel>What&apos;s your email?</FormLabel>
                   <FormControl>
                     <Input placeholder="yourname123@email.com" {...field} />
                   </FormControl>

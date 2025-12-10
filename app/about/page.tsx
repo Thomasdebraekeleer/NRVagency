@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import "../work.css";
 import "../header.css";
@@ -14,24 +14,29 @@ import { Footer } from "@/components/contactSection/footer";
 
 export default function WorkPage() {
   const [delay, setDelay] = useState(15);
-  let timer: NodeJS.Timeout;
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
     if (delay !== 0) {
-      timer = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setDelay(delay - 1);
       }, 1000);
     } else {
       redirect(links.linkedin);
     }
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
   }, [delay]);
 
   return (
     <>
       <Header color="Light" />
       <div className="darkGradient flex h-screen w-screen flex-col items-center justify-center px-paddingX py-paddingY text-center text-lg text-colorSecondaryLight md:text-3xl">
-        About page is not ready yet so you'll be redirected to my LinkedIn
+        About page is not ready yet so you&apos;ll be redirected to my LinkedIn
         instead.
         <br />
         <span className="mt-5 text-xl text-colorLight ">
