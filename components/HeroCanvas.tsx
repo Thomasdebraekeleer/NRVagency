@@ -14,8 +14,6 @@ function ToneAndClear() {
     gl.toneMapping = THREE.ACESFilmicToneMapping;
     gl.outputColorSpace = THREE.SRGBColorSpace;
     gl.setClearColor(0x000000, 0); // alpha: transparent → on voit le fond du site
-    gl.alpha = true; // Activer la transparence
-    gl.premultipliedAlpha = false; // Pour un meilleur glassmorphism
   }, [gl]);
   return null;
 }
@@ -85,7 +83,7 @@ export default function HeroCanvas() {
     <Canvas
       camera={{ position: [0, 0, 5], fov: 50 }}
       dpr={[1, 1.8]}
-      gl={{ antialias: true }}
+      gl={{ antialias: true, alpha: true, premultipliedAlpha: false }}
       style={{ 
         width: '1800px', 
         height: '1800px',
