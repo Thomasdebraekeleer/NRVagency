@@ -62,7 +62,7 @@ export function HeaderNavigation() {
     return () => {
       headerAnimation.current?.kill();
     };
-  }, []);
+  }, [ease]);
 
   useEffect(() => {
     if (isMenuOpen) {

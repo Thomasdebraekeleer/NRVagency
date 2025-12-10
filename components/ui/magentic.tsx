@@ -42,11 +42,8 @@ const Magentic = ({
 
     const magnetButton = magnet.current as HTMLAnchorElement;
     const shapka = magnetButton.querySelector(".shapka");
+    const hasDesktop = isDesktop();
 
-    if (isDesktop()) {
-      magnetButton.addEventListener("mousemove", handleMagnetMove);
-      magnetButton.addEventListener("mouseout", handleMagnetOut);
-    }
     function handleMagnetOut(event: MouseEvent) {
       gsap.to([magnetButton, shapka], {
         x: 0,
@@ -69,7 +66,6 @@ const Magentic = ({
         ease: "power2.out",
         duration: 1,
       });
-      // shapka should be pointer events none
 
       if (shapka) {
         gsap.to(shapka, {
@@ -79,15 +75,20 @@ const Magentic = ({
           duration: 1,
         });
       }
+    }
 
-      //magnetButton.style.transform = 'translate(' + (((( event.clientX - bounding.left)/(magnetButton.offsetWidth))) - 0.5) * strength + 'px,'+ (((( event.clientY - bounding.top)/(magnetButton.offsetHeight))) - 0.5) * strength + 'px)';
+    if (hasDesktop) {
+      magnetButton.addEventListener("mousemove", handleMagnetMove);
+      magnetButton.addEventListener("mouseout", handleMagnetOut);
     }
 
     return () => {
-      magnet.current?.removeEventListener("mousemove", handleMagnetMove);
-      magnet.current?.removeEventListener("mouseout", handleMagnetOut);
+      if (hasDesktop) {
+        magnetButton.removeEventListener("mousemove", handleMagnetMove);
+        magnetButton.removeEventListener("mouseout", handleMagnetOut);
+      }
     };
-  }, []);
+  }, [strength]);
 
   function handleScramble(
     scrambleParams: {

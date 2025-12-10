@@ -104,13 +104,14 @@ export default function IntroReveal({
       });
 
       // Séquence rapide des images 0 à 4
-      if (!tl) return;
+      const timeline = tl;
+      if (!timeline) return;
       imgs.forEach((_, i) => {
         const imgRef = imgRefs.current[i];
         if (imgRef) {
-          tl.set(imgRef, { autoAlpha: 1 });
+          timeline.set(imgRef, { autoAlpha: 1 });
           if (i < imgs.length - 1) {
-            tl.set(imgRef, { autoAlpha: 0 }, `+=${hold/1000}`);
+            timeline.set(imgRef, { autoAlpha: 0 }, `+=${hold/1000}`);
           }
         }
       });
