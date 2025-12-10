@@ -132,6 +132,7 @@ export function WorkSection({
           .map((_, i) => {
             return (
               <div
+                key={i}
                 className={cn(
                   `h-4 w-1 bg-colorSecondary${color} rounded-full`,
                   ` ${i === index ? `h-10 bg-color${color}` : ""}`,
