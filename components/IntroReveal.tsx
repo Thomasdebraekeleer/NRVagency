@@ -69,7 +69,7 @@ export default function IntroReveal({
     const preload = Promise.all(
       imgs.map(src => 
         new Promise<void>(resolve => {
-          const img = new Image();
+          const img = document.createElement('img');
           img.onload = () => resolve();
           img.onerror = () => resolve(); // Continuer même si une image échoue
           img.src = src;
