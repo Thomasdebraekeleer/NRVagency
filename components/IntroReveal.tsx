@@ -104,14 +104,16 @@ export default function IntroReveal({
       });
 
       // Séquence rapide des images 0 à 4
-      imgs.forEach((_, i) => {
-        if (imgRefs.current[i]) {
-          tl.set(imgRefs.current[i], { autoAlpha: 1 });
-          if (i < imgs.length - 1) {
-            tl.set(imgRefs.current[i], { autoAlpha: 0 }, `+=${hold/1000}`);
+      if (tl) {
+        imgs.forEach((_, i) => {
+          if (imgRefs.current[i]) {
+            tl.set(imgRefs.current[i], { autoAlpha: 1 });
+            if (i < imgs.length - 1) {
+              tl.set(imgRefs.current[i], { autoAlpha: 0 }, `+=${hold/1000}`);
+            }
           }
-        }
-      });
+        });
+      }
 
       // Après la dernière image, faire glisser l'overlay vers le haut
       tl.to(overlayRef.current, { 
