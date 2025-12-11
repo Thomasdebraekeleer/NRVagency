@@ -1,164 +1,258 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { Cursor } from "@/components/cursor";
 import { Header } from "@/components/header";
-import Magentic from "@/components/ui/magentic";
 import "../work.css";
 
-const projectsData = [
+type Project = {
+  id: number;
+  title: string;
+  categories: string[];
+  year: number;
+  image: string;
+  link: string;
+};
+
+const projectsData: Project[] = [
   {
     id: 1,
     title: "Sector One",
+    categories: ["Web design", "Branding"],
+    year: 2025,
     image: "/img/Project/Project  2 Sector One.webp",
-    link: "#", // À remplacer par le lien vers la page du projet
+    link: "/work/sector-one",
   },
   {
     id: 2,
     title: "Pardesssus 19",
+    categories: ["Motion", "Création de contenu"],
+    year: 2025,
     image: "/img/Project/Project 1 Pardesssus 19.webp",
-    link: "#", // À remplacer par le lien vers la page du projet
+    link: "#",
   },
   {
     id: 3,
     title: "Samsung",
+    categories: ["Direction artistique", "Brand strategy"],
+    year: 2025,
     image: "/img/Project/Project  3 Samsung.webp",
-    link: "#", // À remplacer par le lien vers la page du projet
+    link: "#",
   },
   {
     id: 4,
     title: "Enthusiast Music",
+    categories: ["Web design", "Community management"],
+    year: 2025,
     image: "/img/Project/Project 4 Enthusiast Music.webp",
-    link: "#", // À remplacer par le lien vers la page du projet
+    link: "#",
   },
   {
     id: 5,
     title: "Sinclair Pilates",
+    categories: ["Vidéo", "Branding"],
+    year: 2025,
     image: "/img/Project/Project 6 Sinclair Pilates.webp",
-    link: "#", // À remplacer par le lien vers la page du projet
+    link: "#",
   },
 ];
 
 export default function WorkPage() {
-  const galleryRef = useRef<HTMLDivElement>(null);
+  const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const highlightsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const previewRef = useRef<HTMLDivElement | null>(null);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+
+  const primaryText = useMemo(() => "#ffffff", []);
+  const secondaryText = useMemo(() => "#ffffff", []);
+  const darkText = useMemo(() => "#0a0a0a", []);
 
   useEffect(() => {
-    if (galleryRef.current) {
-      const items = galleryRef.current.querySelectorAll('.gallery-item');
-      
-      gsap.fromTo(items, 
-        { 
-          opacity: 0, 
-          y: 50,
-          scale: 0.9
-        },
-        { 
-          opacity: 1, 
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power2.out"
-        }
-      );
-    }
-  }, []);
+    if (!rowsRef.current.length) return;
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    const image = e.currentTarget.querySelector('.project-image');
-    const overlay = e.currentTarget.querySelector('.project-overlay');
-
-    gsap.to(image, {
-      scale: 1.05,
-      duration: 0.6,
-      ease: "power2.out"
+    // S'assurer que tous les éléments commencent avec opacity: 1 en CSS
+    rowsRef.current.forEach((el) => {
+      if (el) {
+        gsap.set(el, { opacity: 1 });
+      }
     });
 
-    gsap.to(overlay, {
-      opacity: 0.3,
-      duration: 0.3,
-      ease: "power2.out"
+    gsap.fromTo(
+      rowsRef.current,
+      {
+        opacity: 0,
+        y: 32,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        stagger: 0.08,
+        ease: "power3.out",
+      }
+    );
+  }, []);
+
+  const showHighlight = (index: number) => {
+    const highlight = highlightsRef.current[index];
+    const row = rowsRef.current[index];
+    if (!highlight || !row) return;
+
+    const texts = row.querySelectorAll(".project-title, .project-tag, .project-year");
+
+    gsap.to(highlight, {
+      scaleY: 1,
+      duration: 0.45,
+      ease: "power3.out",
+    });
+
+    gsap.to(texts, {
+      color: darkText,
+      duration: 0.35,
+      ease: "power2.out",
+      stagger: 0.02,
     });
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const image = e.currentTarget.querySelector('.project-image');
-    const overlay = e.currentTarget.querySelector('.project-overlay');
+  const hideHighlight = (index: number) => {
+    const highlight = highlightsRef.current[index];
+    const row = rowsRef.current[index];
+    if (!highlight || !row) return;
 
-    gsap.to(image, {
+    const texts = row.querySelectorAll(".project-title, .project-tag, .project-year");
+
+    gsap.to(highlight, {
+      scaleY: 0,
+      duration: 0.45,
+      ease: "power3.out",
+    });
+
+    gsap.to(texts, {
+      color: (target) =>
+        target instanceof HTMLElement && target.classList.contains("project-title")
+          ? primaryText
+          : secondaryText,
+      duration: 0.35,
+      ease: "power2.out",
+      stagger: 0.02,
+    });
+  };
+
+  const showPreview = (project: Project, event: React.MouseEvent) => {
+    const preview = previewRef.current;
+    if (!preview) return;
+
+    gsap.set(preview, {
+      x: event.clientX + 24,
+      y: event.clientY - 24,
+      scale: 0.8,
+      rotate: -2,
+    });
+
+    gsap.to(preview, {
+      opacity: 1,
       scale: 1,
-      duration: 0.6,
-      ease: "power2.out"
+      rotate: 0,
+      duration: 0.35,
+      ease: "power3.out",
     });
 
-    gsap.to(overlay, {
-      opacity: 0,
-      duration: 0.3,
-      ease: "power2.out"
+    setActiveProject(project);
+  };
+
+  const movePreview = (event: React.MouseEvent) => {
+    if (!previewRef.current || !activeProject) return;
+    gsap.to(previewRef.current, {
+      x: event.clientX + 24,
+      y: event.clientY - 24,
+      duration: 0.5,
+      ease: "power3.out",
     });
+  };
+
+  const hidePreview = () => {
+    if (!previewRef.current) return;
+    gsap.to(previewRef.current, {
+      opacity: 0,
+      scale: 0.85,
+      rotate: 3,
+      duration: 0.25,
+      ease: "power2.out",
+    });
+    setActiveProject(null);
   };
 
   return (
     <>
       <Cursor />
       <Header color="Light" />
-      
-      <div 
-        className="min-h-screen"
-        style={{ backgroundColor: '#0a0e0f' }}
-      >
-        <div className="container mx-auto px-6 py-20">
-          <div className="mb-16">
-            <h1 className="text-6xl font-bold text-white mb-4">Mes Projets</h1>
-            <p className="text-xl text-gray-300">Découvrez une sélection de mes réalisations</p>
+
+      <main className="work-page">
+        <div className="work-wrapper">
+          <div className="work-header">
+            <p className="eyebrow">Sélection 2025</p>
+            <h1>Projects</h1>
           </div>
 
-          <div 
-            ref={galleryRef}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-start"
-          >
-            {projectsData.map((project) => (
-              <Magentic
+          <div className="project-list">
+            {projectsData.map((project, index) => (
+              <Link
                 key={project.id}
                 href={project.link}
-                strength={30}
-                className="gallery-item group cursor-pointer"
+                className="project-row"
+                onMouseEnter={(event) => {
+                  showHighlight(index);
+                  showPreview(project, event);
+                }}
+                onMouseMove={movePreview}
+                onMouseLeave={() => {
+                  hideHighlight(index);
+                  hidePreview();
+                }}
+                ref={(el) => {
+                  rowsRef.current[index] = el;
+                }}
               >
                 <div
-                  className="relative overflow-hidden transition-all duration-300"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={1200}
-                    height={900}
-                    className="project-image w-full h-auto transition-transform duration-600 ease-out"
-                    priority={project.id === 1}
-                  />
-                  
-                  <div 
-                    className="project-overlay absolute inset-0 bg-black opacity-0 transition-opacity duration-300"
-                  />
-                  
-                  {/* Effet de glow au hover - limité à l'image */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                  className="project-highlight"
+                  ref={(el) => {
+                    highlightsRef.current[index] = el;
+                  }}
+                />
+
+                <div className="project-content">
+                  <p className="project-title">{project.title}</p>
+                  <div className="project-tags">
+                    {project.categories.map((cat) => (
+                      <span key={cat} className="project-tag">
+                        {cat}
+                      </span>
+                    ))}
                   </div>
-                  
-                  <div className="absolute bottom-4 left-4 z-10">
-                    <h3 className="project-title text-xl font-semibold text-[#f1f1e7]">
-                      {project.title}
-                    </h3>
-                  </div>
+                  <span className="project-year">{project.year}</span>
                 </div>
-              </Magentic>
+              </Link>
             ))}
           </div>
         </div>
-      </div>
+
+        <div className="floating-preview" ref={previewRef}>
+          {activeProject && (
+            <Image
+              key={activeProject.id}
+              src={activeProject.image}
+              alt={activeProject.title}
+              fill
+              sizes="260px"
+              className="floating-preview__img"
+              priority
+            />
+          )}
+        </div>
+      </main>
     </>
   );
 }

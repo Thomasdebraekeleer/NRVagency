@@ -20,19 +20,28 @@ export function HeaderNavigation() {
   const ease = CustomEase.create("custom", "M0,0 C0.52,0.01 0.16,1 1,1 ");
 
   const headerAnimation = useRef<gsap.core.Timeline | null>(null);
+  const closeAnimation = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
     const flexHeight = isDesktop() ? "20vh" : "7vh";
+    
+    // Animation d'ouverture
     headerAnimation.current = gsap
-      .timeline()
+      .timeline({ paused: true })
       .set("#headerNavigation", {
         display: "flex",
       })
-      .to("#headerNavigation", {
-        duration: 1,
-        y: "0%",
-        ease,
-      })
+      .fromTo(
+        "#headerNavigation",
+        {
+          y: "-100%",
+        },
+        {
+          y: "0%",
+          duration: 1,
+          ease,
+        }
+      )
       .fromTo(
         "#headerNavigation .rounded__div__up",
         {
@@ -59,16 +68,49 @@ export function HeaderNavigation() {
         "-=1.2",
       );
 
+    // Animation de fermeture (remonte vers le haut)
+    closeAnimation.current = gsap
+      .timeline({ paused: true })
+      .to("#headerNavigation", {
+        y: "-100%",
+        duration: 1,
+        ease,
+      })
+      .to(
+        "#headerNavigation .rounded__div__up",
+        {
+          height: flexHeight,
+          duration: 1,
+          ease,
+        },
+        "-=0.9",
+      )
+      .to(
+        ".headerAnimate",
+        {
+          y: "-20vh",
+          duration: 1,
+          stagger: -0.08,
+          ease,
+        },
+        "-=1.2",
+      )
+      .set("#headerNavigation", {
+        display: "none",
+      });
+
     return () => {
       headerAnimation.current?.kill();
+      closeAnimation.current?.kill();
     };
   }, [ease]);
 
   useEffect(() => {
     if (isMenuOpen) {
-      headerAnimation.current?.play();
+      gsap.set("#headerNavigation", { display: "flex" });
+      headerAnimation.current?.restart();
     } else {
-      headerAnimation.current?.reverse();
+      closeAnimation.current?.restart();
     }
   }, [isMenuOpen]);
 

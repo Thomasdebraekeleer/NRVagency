@@ -22,9 +22,17 @@ const helvetica = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Vipul Kumar • Developer",
+  title: "NRV Agency",
   description:
-    "Vipul Kumar is a developer who creates beautiful and pixel perfect websites with zero effort in reviews.",
+    "NRV Agency - Creative agency specializing in branding, web design, and digital experiences.",
+  icons: {
+    icon: [
+      { url: "/img/Project/Poject Sector One/LOGO NRV.webp", type: "image/webp" },
+      { url: "/img/logo.png", type: "image/png" },
+    ],
+    shortcut: "/img/logo.png",
+    apple: "/img/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -39,6 +47,8 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
         ></meta>
+        <link rel="icon" href="/img/logo.png" type="image/png" />
+        <link rel="shortcut icon" href="/img/logo.png" type="image/png" />
         <GoogleAnalytics />
       </head>
 
