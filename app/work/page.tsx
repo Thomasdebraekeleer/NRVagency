@@ -131,10 +131,15 @@ export default function WorkPage() {
     });
 
     gsap.to(texts, {
-      color: (target) =>
-        target instanceof HTMLElement && target.classList.contains("project-title")
-          ? primaryText
-          : secondaryText,
+      color: (target: any) => {
+        if (target && typeof target === 'object' && 'classList' in target) {
+          const element = target as HTMLElement;
+          return element.classList.contains("project-title")
+            ? primaryText
+            : secondaryText;
+        }
+        return secondaryText;
+      },
       duration: 0.35,
       ease: "power2.out",
       stagger: 0.02,
