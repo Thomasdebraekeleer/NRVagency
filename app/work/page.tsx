@@ -61,7 +61,7 @@ const projectsData: Project[] = [
 ];
 
 export default function WorkPage() {
-  const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const rowsRef = useRef<(HTMLElement | null)[]>([]);
   const highlightsRef = useRef<(HTMLDivElement | null)[]>([]);
   const previewRef = useRef<HTMLDivElement | null>(null);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
