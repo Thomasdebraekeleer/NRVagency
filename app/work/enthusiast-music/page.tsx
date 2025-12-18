@@ -74,7 +74,7 @@ if (typeof document !== "undefined") {
   document.head.appendChild(style);
 }
 
-export default function SamsungPage() {
+export default function EnthusiastMusicPage() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const jerseyTextRef = useRef<HTMLParagraphElement>(null);
@@ -152,16 +152,16 @@ export default function SamsungPage() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (isMenuOpen) {
-      console.log('[SamsungPage] Menu is open, skipping animation setup');
+      console.log('[EnthusiastMusicPage] Menu is open, skipping animation setup');
       return;
     }
     
-    console.log('[SamsungPage] Setting up animation for bottom text');
+    console.log('[EnthusiastMusicPage] Setting up animation for bottom text');
     gsap.registerPlugin(ScrollTrigger);
 
     const textElement = jerseyTextRef.current;
     if (!textElement) {
-      console.log('[SamsungPage] Bottom text element not found');
+      console.log('[EnthusiastMusicPage] Bottom text element not found');
       return;
     }
     
@@ -182,7 +182,7 @@ export default function SamsungPage() {
       // Vérifier si l'élément est entré dans le viewport
       if (rect.top < triggerPoint && rect.bottom > 0) {
         if (innerLines.length > 0) {
-          console.log('[SamsungPage] Text entered viewport, animating');
+          console.log('[EnthusiastMusicPage] Text entered viewport, animating');
           hasAnimated = true;
           gsap.set(textElement, { opacity: 1 });
           gsap.to(
@@ -430,38 +430,18 @@ export default function SamsungPage() {
       <HeaderNavigation />
 
       <main className="min-h-screen bg-[#090909] relative flex flex-col">
-        {/* Hero Section avec vidéo */}
+        {/* Hero Section avec image */}
         <section className="section section__1 darkGradient first relative z-0 text-colorLight" style={{ isolation: 'isolate' }}>
-          {/* Vidéo en plein écran sans bords arrondis */}
+          {/* Image en plein écran sans bords arrondis */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Vidéo pour desktop */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="hidden md:block w-full h-full object-cover pointer-events-none"
+            <Image
+              src="/img/Project/Enthusiast Music/Enthusiast header.webp"
+              alt="Enthusiast Music Header"
+              fill
+              className="object-cover pointer-events-none"
               style={{ pointerEvents: 'none' }}
-            >
-              <source
-                src="/img/Project/Samsung/Header projet samsung.mp4"
-                type="video/mp4"
-              />
-            </video>
-            {/* Vidéo pour mobile */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="block md:hidden w-full h-full object-cover pointer-events-none"
-              style={{ pointerEvents: 'none' }}
-            >
-              <source
-                src="/img/Project/Samsung/Sasmung vertical video header.mp4"
-                type="video/mp4"
-              />
-            </video>
+              priority
+            />
           </div>
           <Bulge type="Light" />
           <Header color="Light" />
@@ -470,11 +450,11 @@ export default function SamsungPage() {
           {/* Contenu principal aligné à gauche, centré verticalement - même disposition que page d'accueil */}
           <div className="absolute inset-0 flex flex-col items-start justify-center z-10 pointer-events-none" style={{ pointerEvents: 'none' }}>
             <div className="flex-1 flex flex-col items-start justify-center text-left pl-[15%] md:pl-[20%] lg:pl-[25%] max-w-7xl relative z-10">
-              {/* Logo Samsung au-dessus du paragraphe */}
+              {/* Logo Enthusiast Music au-dessus du paragraphe */}
               <div ref={logoRef} className="mb-8">
                 <Image
-                  src="/img/Project/Samsung/Samsung x sharingbox logo 2.webp"
-                  alt="Samsung Logo"
+                  src="/img/Project/Enthusiast Music/Enthusiast music logo.webp"
+                  alt="Enthusiast Music Logo"
                   width={80}
                   height={80}
                   className="object-contain w-[80px] h-[80px] md:w-[100px] md:h-[100px]"
@@ -487,7 +467,7 @@ export default function SamsungPage() {
                 className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase hero-text-paragraph"
                 style={{ overflow: 'visible', paddingBottom: '0.3em' }}
               >
-                <span>We</span> turned a live activation into a high-performing content library for <span className="!lowercase">samsung</span> and <span className="!lowercase">sharingbox</span>.
+                <span>Enthusiast Music</span> is a leading production and management company for bands and artists, shaping <span className="!lowercase">Belgium</span>&apos;s vibrant live music scene with unparalleled expertise and passion.
               </p>
 
             </div>
@@ -496,7 +476,7 @@ export default function SamsungPage() {
           {/* Date en bas à gauche - même style que NRV sur la page d'accueil */}
           <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 z-[100] pointer-events-none">
             <p className="text-white text-[10px] md:text-xs font-light">
-              Jan 15, 2025
+              Jun 7, 2025
             </p>
           </div>
 
@@ -512,7 +492,7 @@ export default function SamsungPage() {
           {/* Catégorie en bas à droite - même style que Agency sur la page d'accueil */}
           <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 z-[100] pointer-events-none">
             <p className="text-white text-[10px] md:text-xs font-light">
-              Content Production
+              Web Development
             </p>
           </div>
         </section>
@@ -533,34 +513,31 @@ export default function SamsungPage() {
                 </Link>
 
                 {/* Date */}
-                <p className="text-white text-sm">Jan 15, 2025</p>
+                <p className="text-white text-sm">Jun 7, 2025</p>
 
                 {/* Catégorie */}
                 <div className="inline-block">
                   <span className="px-4 py-2 bg-[#1a1a1a] text-white rounded-full text-sm uppercase tracking-wider">
-                    Content Production
+                    Web Development
                   </span>
                 </div>
 
                 {/* Description */}
                 <div className="space-y-4 text-white">
                   <p className="text-base leading-relaxed">
-                    Sharingbox is a global leader in immersive photo and video event experiences, creating phygital activations that boost brand awareness, capture compliant data, and drive lead generation.
-                  </p>
-                  <p className="text-base leading-relaxed">
-                    For Samsung&apos;s Brussels activation, Samsung branded the iconic &quot;The View&quot; Ferris wheel in Galaxy AI visuals and installed Sharingbox&apos;s ScanCapture in every cabin so visitors could test the latest Galaxy phones, take high-resolution photos and short videos during the ride, then redeem professional prints at on-site stations. Our agency captured the entire experience in photo and video, delivering a social-ready content library used by Samsung and Sharingbox to amplify the Galaxy launch and sustain engagement with locals and tourists.
+                    NRV Agency partnered with Enthusiast Music to design and develop a modern, fully responsive website that elevates their roster and makes discovery effortless. We created a striking gallery-driven homepage and crafted dedicated artist pages with a clean editorial layout strong visuals, bios, key highlights, and direct &quot;Buy&quot; pathways to Bandcamp so each project feels premium and conversion-ready. The platform is structured around the essentials (Bands, Concerts, News, Merch) with a clear contact flow for a professional, scalable digital presence.
                   </p>
                 </div>
 
                 {/* Navigation Previous/Next */}
                 <div className="flex items-center justify-between pt-8 border-t border-white/10">
                   <Link
-                    href="/work/sector-one"
+                    href="/work/samsung"
                     className="flex items-center gap-4 group"
                   >
                     <div className="w-16 h-16 rounded-lg overflow-hidden bg-[#1a1a1a] flex-shrink-0">
                       <Image
-                        src="/img/Project/Project  2 Sector One.webp"
+                        src="/img/Project/Project  3 Samsung.webp"
                         alt="Previous project"
                         width={64}
                         height={64}
@@ -572,13 +549,13 @@ export default function SamsungPage() {
                         Previous
                       </p>
                       <p className="text-white group-hover:text-white/80 transition-colors text-sm">
-                        Sector One
+                        Samsung
                       </p>
                     </div>
                   </Link>
 
                   <Link
-                    href="/work/enthusiast-music"
+                    href="#"
                     className="flex items-center gap-4 group text-right"
                   >
                     <div>
@@ -586,7 +563,7 @@ export default function SamsungPage() {
                         Next
                       </p>
                       <p className="text-white group-hover:text-white/80 transition-colors text-sm">
-                        Enthusiast Music
+                        -
                       </p>
                     </div>
                     <div className="w-16 h-16 rounded-lg overflow-hidden bg-[#1a1a1a] flex-shrink-0">
@@ -602,69 +579,77 @@ export default function SamsungPage() {
                 </div>
               </div>
 
-              {/* Colonne droite - Vidéo avec contrôles */}
+              {/* Colonne droite - Image */}
               <div className="w-full h-full">
-                <video
-                  controls
-                  className="w-full h-full object-cover"
-                  preload="metadata"
-                >
-                  <source
-                    src="/img/Project/Samsung/SharingBox-SamsungV4.mp4"
-                    type="video/mp4"
-                  />
-                  Votre navigateur ne supporte pas la lecture de vidéos.
-                </video>
+                <Image
+                  src="/img/Project/Enthusiast Music/Enthusiast CONCLUSION IMAGE.webp"
+                  alt="Enthusiast Music Conclusion"
+                  width={1200}
+                  height={800}
+                  quality={100}
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Galerie photos - 3 photos côte à côte + 1 photo horizontale */}
+        {/* Galerie photo - Grande image horizontale */}
         <section className="relative w-full bg-[#090909]">
           <div className="container mx-auto px-6vw pb-20 max-w-[1690px]">
+            <div className="w-full mb-2">
+              <Image
+                src="/img/Project/Enthusiast Music/Enthusiast MOCKUP.webp"
+                alt="Enthusiast Music Mockup"
+                width={1920}
+                height={1080}
+                quality={100}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            {/* 3 vidéos côte à côte */}
             <div className="grid grid-cols-3 gap-2">
-              {/* Première ligne - 3 photos */}
               <div className="w-full">
-                <Image
-                  src="/img/Project/Samsung/Samsung 4.webp"
-                  alt="Samsung 4"
-                  width={1200}
-                  height={1600}
-                  quality={100}
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-auto object-cover"
-                />
+                >
+                  <source
+                    src="/img/Project/Enthusiast Music/Enthusiast video 1.mp4"
+                    type="video/mp4"
+                  />
+                </video>
               </div>
               <div className="w-full">
-                <Image
-                  src="/img/Project/Samsung/Samsung 1.webp"
-                  alt="Samsung 1"
-                  width={1200}
-                  height={1600}
-                  quality={100}
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-auto object-cover"
-                />
+                >
+                  <source
+                    src="/img/Project/Enthusiast Music/Enthusiast video 3.mp4"
+                    type="video/mp4"
+                  />
+                </video>
               </div>
               <div className="w-full">
-                <Image
-                  src="/img/Project/Samsung/Samsung 2.webp"
-                  alt="Samsung 2"
-                  width={1200}
-                  height={1600}
-                  quality={100}
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-auto object-cover"
-                />
-              </div>
-              {/* Deuxième ligne - Photo horizontale qui prend toute la largeur */}
-              <div className="col-span-3 w-full">
-                <Image
-                  src="/img/Project/Samsung/Samsung Conclusion.webp"
-                  alt="Samsung Conclusion"
-                  width={1200}
-                  height={1600}
-                  quality={100}
-                  className="w-full h-auto object-cover"
-                />
+                >
+                  <source
+                    src="/img/Project/Enthusiast Music/Enthusiast video 4.mp4"
+                    type="video/mp4"
+                  />
+                </video>
               </div>
             </div>
           </div>
@@ -675,8 +660,8 @@ export default function SamsungPage() {
           {/* Background image qui prend tout l'écran */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/img/Project/Samsung/Samsung Conclusion 2.webp"
-              alt="Samsung Conclusion Background"
+              src="/img/Project/Enthusiast Music/Enthusiast CONCLUSION IMAGE 2.webp"
+              alt="Enthusiast Music Conclusion Background"
               fill
               className="object-cover"
               quality={100}
@@ -693,7 +678,7 @@ export default function SamsungPage() {
                 className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed lowercase hero-text-paragraph-bottom"
                 style={{ overflow: 'visible', paddingBottom: '0.2em' }}
               >
-                <span>Every</span> activation deserves a story that lives beyond the day. We capture it end-to-end and deliver assets made for social and marketing.
+                <span>Enthusiast Music</span> now has a digital home that feels as bold and curated as the artists it represents built to spark attention and make every visit count. It&apos;s a clean, scalable platform designed to grow with the label and turn discovery into real engagement.
               </p>
             </div>
           </div>

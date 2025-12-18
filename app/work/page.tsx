@@ -21,15 +21,15 @@ const projectsData: Project[] = [
   {
     id: 1,
     title: "Sector One",
-    categories: ["Web design", "Branding"],
-    year: 2025,
+    categories: ["Branding", "Content Creation"],
+    year: 2024,
     image: "/img/Project/Project  2 Sector One.webp",
     link: "/work/sector-one",
   },
   {
     id: 2,
     title: "Pardesssus 19",
-    categories: ["Motion", "Création de contenu"],
+    categories: ["Content Production", "AI Generation"],
     year: 2025,
     image: "/img/Project/Project 1 Pardesssus 19.webp",
     link: "#",
@@ -45,15 +45,15 @@ const projectsData: Project[] = [
   {
     id: 4,
     title: "Enthusiast Music",
-    categories: ["Web design", "Community management"],
+    categories: ["Web Development"],
     year: 2025,
     image: "/img/Project/Project 4 Enthusiast Music.webp",
-    link: "#",
+    link: "/work/enthusiast-music",
   },
   {
     id: 5,
     title: "Sinclair Pilates",
-    categories: ["Vidéo", "Branding"],
+    categories: ["Content Production", "Social Media"],
     year: 2025,
     image: "/img/Project/Project 6 Sinclair Pilates.webp",
     link: "#",
@@ -69,6 +69,11 @@ export default function WorkPage() {
   const primaryText = useMemo(() => "#ffffff", []);
   const secondaryText = useMemo(() => "#ffffff", []);
   const darkText = useMemo(() => "#0a0a0a", []);
+
+  // Trier les projets par année (2024 d'abord, puis 2025)
+  const sortedProjects = useMemo(() => {
+    return [...projectsData].sort((a, b) => a.year - b.year);
+  }, []);
 
   useEffect(() => {
     if (!rowsRef.current.length) return;
@@ -94,7 +99,7 @@ export default function WorkPage() {
         ease: "power3.out",
       }
     );
-  }, []);
+  }, [sortedProjects]);
 
   const showHighlight = (index: number) => {
     const highlight = highlightsRef.current[index];
@@ -203,7 +208,7 @@ export default function WorkPage() {
           </div>
 
           <div className="project-list">
-            {projectsData.map((project, index) => (
+            {sortedProjects.map((project, index) => (
               <Link
                 key={project.id}
                 href={project.link}
