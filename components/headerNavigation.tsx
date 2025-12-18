@@ -1,5 +1,6 @@
-import React, { use, useEffect, useRef } from "react";
+import React, { use, useEffect, useRef, useMemo } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import { Header } from "./header";
 import { useAppSelector } from "@/hooks/reduxHooks";
@@ -8,6 +9,12 @@ import Magentic from "./ui/magentic";
 import { isDesktop } from "@/lib/utils";
 import { link } from "fs";
 import { links } from "@/data/data";
+
+// Enregistrer CustomEase une seule fois au niveau du module
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(CustomEase);
+}
+
 export function HeaderNavigation() {
   const { isMenuOpen, color } = useAppSelector((state) => state.menuReducer);
   const possibleTailwindClasses = [
@@ -17,7 +24,10 @@ export function HeaderNavigation() {
     "darkGradient",
   ];
 
-  const ease = CustomEase.create("custom", "M0,0 C0.52,0.01 0.16,1 1,1 ");
+  // Créer l'ease une seule fois avec useMemo
+  const ease = useMemo(() => {
+    return CustomEase.create("custom", "M0,0 C0.52,0.01 0.16,1 1,1 ");
+  }, []);
 
   const headerAnimation = useRef<gsap.core.Timeline | null>(null);
   const closeAnimation = useRef<gsap.core.Timeline | null>(null);
@@ -106,11 +116,48 @@ export function HeaderNavigation() {
   }, [ease]);
 
   useEffect(() => {
+    console.log('[HeaderNavigation] isMenuOpen changed:', isMenuOpen);
+    
     if (isMenuOpen) {
+      console.log('[HeaderNavigation] Opening menu...');
+      
+      // Verrouiller le scroll quand le menu est ouvert
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      
+      // Désactiver tous les ScrollTriggers
+      const allTriggers = ScrollTrigger.getAll();
+      console.log('[HeaderNavigation] Disabling', allTriggers.length, 'ScrollTriggers');
+      allTriggers.forEach(trigger => trigger.disable());
+      
       gsap.set("#headerNavigation", { display: "flex" });
       headerAnimation.current?.restart();
+      
     } else {
+      console.log('[HeaderNavigation] Closing menu...');
+      
+      // Réactiver le scroll IMMÉDIATEMENT quand le menu se ferme
+      // (pas besoin d'attendre l'animation)
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      
       closeAnimation.current?.restart();
+      
+      // Réactiver les ScrollTriggers après l'animation de fermeture
+      const timeoutId = setTimeout(() => {
+        console.log('[HeaderNavigation] Re-enabling ScrollTriggers');
+        
+        // Réactiver les ScrollTriggers
+        ScrollTrigger.getAll().forEach(trigger => trigger.enable());
+        // Rafraîchir ScrollTrigger de manière asynchrone pour éviter les conflits
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
+      }, 1100); // Après la durée de l'animation (1 seconde)
+      
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }, [isMenuOpen]);
 

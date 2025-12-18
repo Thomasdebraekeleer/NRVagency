@@ -37,10 +37,10 @@ const projectsData: Project[] = [
   {
     id: 3,
     title: "Samsung",
-    categories: ["Direction artistique", "Brand strategy"],
+    categories: ["Content Production"],
     year: 2025,
     image: "/img/Project/Project  3 Samsung.webp",
-    link: "#",
+    link: "/work/samsung",
   },
   {
     id: 4,

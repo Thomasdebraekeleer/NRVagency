@@ -1,3 +1,15 @@
+/* Smooth scroll pour la page Sector One */
+html {
+  scroll-behavior: auto; /* Désactiver le smooth scroll CSS natif pour utiliser notre custom */
+}
+
+/* Améliorer le smooth scroll sur iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 .work-page {
   min-height: 100vh;
   background: #090909;

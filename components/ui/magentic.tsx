@@ -115,12 +115,13 @@ const Magentic = ({
     <a
       ref={magnet}
       className={cn(
-        "flex justify-center *:pointer-events-none  " +
+        "flex justify-center pointer-events-auto " +
           (hoverUnderline
             ? " before:absolute before:bottom-0 before:h-0.5 before:w-0 before:origin-center before:bg-[#a3a3a3] before:transition-all before:duration-300 hover:before:w-full "
             : " ") +
           className,
       )}
+      style={{ pointerEvents: 'auto' }}
       onMouseEnter={() => {
         if (scrambleParams) {
           if (magnet.current === null) {

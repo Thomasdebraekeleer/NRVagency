@@ -211,9 +211,7 @@ input:-webkit-autofill:active {
 }
 
 .section__1 {
-  background: url('/img/Background hero.webp');
-  background-size: cover;
-  background-position: center;
+  /* Background image remplacé par vidéo dans le composant */
 }
 
 .section__5 {
