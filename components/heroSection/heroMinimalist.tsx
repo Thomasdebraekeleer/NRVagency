@@ -20,7 +20,7 @@ export function HeroMinimalist() {
         const lines = textRef.current!.querySelectorAll(".line");
         
         if (lines.length > 0) {
-          const myText2 = new SplitType(lines, {
+          const myText2 = new SplitType(Array.from(lines) as HTMLElement[], {
             types: "lines",
             lineClass: "innnerLine",
           });
@@ -29,7 +29,7 @@ export function HeroMinimalist() {
           
           if (innerLines.length > 0) {
             gsap.from(
-              innerLines,
+              Array.from(innerLines) as HTMLElement[],
               1.5,
               {
                 y: "200%",
