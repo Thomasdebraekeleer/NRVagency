@@ -610,7 +610,7 @@ export default function SamsungPage() {
                   preload="metadata"
                 >
                   <source
-                    src="/img/Project/Samsung/SharingBox-SamsungV3.mp4"
+                    src="/img/Project/Samsung/SharingBox-SamsungV4.mp4"
                     type="video/mp4"
                   />
                   Votre navigateur ne supporte pas la lecture de vidéos.
