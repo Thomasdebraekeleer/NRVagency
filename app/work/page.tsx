@@ -53,10 +53,10 @@ const projectsData: Project[] = [
   {
     id: 5,
     title: "Sinclair Pilates",
-    categories: ["Content Production", "Social Media"],
+    categories: ["Web Development"],
     year: 2025,
     image: "/img/Project/Project 6 Sinclair Pilates.webp",
-    link: "#",
+    link: "/work/sinclair-pilates",
   },
 ];
 
