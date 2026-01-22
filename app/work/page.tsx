@@ -28,11 +28,11 @@ const projectsData: Project[] = [
   },
   {
     id: 2,
-    title: "Pardesssus 19",
+    title: "Aliasing",
     categories: ["Content Production", "AI Generation"],
     year: 2025,
     image: "/img/Project/Project 1 Pardesssus 19.webp",
-    link: "#",
+    link: "/work/aliasing",
   },
   {
     id: 3,
