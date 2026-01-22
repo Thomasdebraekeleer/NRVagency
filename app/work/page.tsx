@@ -63,7 +63,7 @@ const projectsData: Project[] = [
     title: "Studio Matongé",
     categories: ["Content Production", "Social Media"],
     year: 2025,
-    image: "/img/Project/Studio Matongé/Studio matongé Photo header.webp",
+    image: "/img/Project/Project 7 Studio Matongé.webp",
     link: "/work/studio-matonge",
   },
 ];
