@@ -16,6 +16,20 @@ html {
   color: #f5f5f5;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+}
+
+/* S'assurer que le header est cliquable sur la page work */
+.work-page-header.nav__container {
+  position: fixed !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+
+.work-page-header.nav__container > nav > div {
+  z-index: 10001 !important;
+  pointer-events: auto !important;
+  position: relative !important;
 }
 
 .work-wrapper {
@@ -143,7 +157,7 @@ html {
   box-shadow: 0 30px 120px rgba(0, 0, 0, 0.35);
   mix-blend-mode: normal;
   background: #111;
-  z-index: 9999;
+  z-index: 9998;
   isolation: isolate;
 }
 

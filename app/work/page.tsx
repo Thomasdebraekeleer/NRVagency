@@ -58,6 +58,14 @@ const projectsData: Project[] = [
     image: "/img/Project/Project 6 Sinclair Pilates.webp",
     link: "/work/sinclair-pilates",
   },
+  {
+    id: 6,
+    title: "Studio Matongé",
+    categories: ["Content Production", "Social Media"],
+    year: 2025,
+    image: "/img/Project/Studio Matongé/Studio matongé Photo header.webp",
+    link: "/work/studio-matonge",
+  },
 ];
 
 export default function WorkPage() {
@@ -198,7 +206,7 @@ export default function WorkPage() {
   return (
     <>
       <Cursor />
-      <Header color="Light" />
+      <Header color="Light" className="work-page-header" />
 
       <main className="work-page">
         <div className="work-wrapper">
