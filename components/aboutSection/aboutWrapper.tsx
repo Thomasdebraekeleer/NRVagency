@@ -160,7 +160,7 @@ export function AboutWrapper({}) {
             autoPlay
             muted
             loop
-            src="/video/transcode.mp4"
+            src="/img/Video project homepage.mp4"
           ></video>
         </div>
       </a>
