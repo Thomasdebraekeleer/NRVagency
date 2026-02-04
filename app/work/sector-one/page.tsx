@@ -10,8 +10,8 @@ import SplitType from "split-type";
 import { Cursor } from "@/components/cursor";
 import { Header } from "@/components/header";
 import { HeaderNavigation } from "@/components/headerNavigation";
-import { HeroLogo } from "@/components/heroSection/heroLogo";
 import { Bulge } from "@/components/bulge";
+import { HeroLogo } from "@/components/heroSection/heroLogo";
 import { Footer } from "@/components/contactSection/footer";
 import { useAppSelector } from "@/hooks/reduxHooks";
 
@@ -396,7 +396,9 @@ export default function SectorOnePage() {
           </div>
           <Bulge type="Light" />
           <Header color="Light" />
-          <HeroLogo />
+          <div className="hidden md:block">
+            <HeroLogo />
+          </div>
 
           {/* Contenu principal aligné à gauche, centré verticalement - même disposition que page d'accueil */}
           <div className="absolute inset-0 flex flex-col items-start justify-center z-10 pointer-events-none" style={{ pointerEvents: 'none' }}>
@@ -479,8 +481,8 @@ export default function SectorOnePage() {
                   </p>
                 </div>
 
-                {/* Navigation Previous/Next */}
-                <div className="flex items-center justify-between pt-8 border-t border-white/10">
+                {/* Navigation Previous/Next - Desktop seulement */}
+                <div className="hidden lg:flex items-center justify-between pt-8 border-t border-white/10">
                   <Link
                     href="#"
                     className="flex items-center gap-4 group"
@@ -539,6 +541,55 @@ export default function SectorOnePage() {
                   quality={100}
                   className="w-full h-full object-cover"
                 />
+              </div>
+
+              {/* Navigation Previous/Next - Mobile seulement, en dessous de la photo */}
+              <div className="flex lg:hidden items-center justify-between pt-8 border-t border-white/10 col-span-1">
+                <Link
+                  href="#"
+                  className="flex items-center gap-4 group"
+                >
+                  <div className="w-16 h-16 rounded-lg overflow-hidden bg-[#1a1a1a] flex-shrink-0">
+                    <Image
+                      src="/img/Project/Project 1 Pardesssus 19.webp"
+                      alt="Previous project"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-white/60 text-xs uppercase tracking-wider">
+                      Previous
+                    </p>
+                    <p className="text-white group-hover:text-white/80 transition-colors text-sm">
+                      Pardesssus 19
+                    </p>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/work/samsung"
+                  className="flex items-center gap-4 group text-right"
+                >
+                  <div>
+                    <p className="text-white/60 text-xs uppercase tracking-wider">
+                      Next
+                    </p>
+                    <p className="text-white group-hover:text-white/80 transition-colors text-sm">
+                      Samsung
+                    </p>
+                  </div>
+                  <div className="w-16 h-16 rounded-lg overflow-hidden bg-[#1a1a1a] flex-shrink-0">
+                    <Image
+                      src="/img/Project/Project  3 Samsung.webp"
+                      alt="Next project"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

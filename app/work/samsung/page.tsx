@@ -10,8 +10,8 @@ import SplitType from "split-type";
 import { Cursor } from "@/components/cursor";
 import { Header } from "@/components/header";
 import { HeaderNavigation } from "@/components/headerNavigation";
-import { HeroLogo } from "@/components/heroSection/heroLogo";
 import { Bulge } from "@/components/bulge";
+import { HeroLogo } from "@/components/heroSection/heroLogo";
 import { Footer } from "@/components/contactSection/footer";
 import { useAppSelector } from "@/hooks/reduxHooks";
 
@@ -469,7 +469,9 @@ export default function SamsungPage() {
           </div>
           <Bulge type="Light" />
           <Header color="Light" />
-          <HeroLogo />
+          <div className="hidden md:block">
+            <HeroLogo />
+          </div>
 
           {/* Contenu principal aligné à gauche, centré verticalement - même disposition que page d'accueil */}
           <div className="absolute inset-0 flex flex-col items-start justify-center z-10 pointer-events-none" style={{ pointerEvents: 'none' }}>
@@ -556,8 +558,8 @@ export default function SamsungPage() {
                   </p>
                 </div>
 
-                {/* Navigation Previous/Next */}
-                <div className="flex items-center justify-between pt-8 border-t border-white/10">
+                {/* Navigation Previous/Next - Desktop seulement */}
+                <div className="hidden lg:flex items-center justify-between pt-8 border-t border-white/10">
                   <Link
                     href="/work/sector-one"
                     className="flex items-center gap-4 group"
@@ -619,6 +621,55 @@ export default function SamsungPage() {
                   />
                   Votre navigateur ne supporte pas la lecture de vidéos.
                 </video>
+              </div>
+
+              {/* Navigation Previous/Next - Mobile seulement, en dessous de la vidéo */}
+              <div className="flex lg:hidden items-center justify-between pt-8 border-t border-white/10 col-span-1">
+                <Link
+                  href="/work/sector-one"
+                  className="flex items-center gap-4 group"
+                >
+                  <div className="w-16 h-16 rounded-lg overflow-hidden bg-[#1a1a1a] flex-shrink-0">
+                    <Image
+                      src="/img/Project/Project  2 Sector One.webp"
+                      alt="Previous project"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-white/60 text-xs uppercase tracking-wider">
+                      Previous
+                    </p>
+                    <p className="text-white group-hover:text-white/80 transition-colors text-sm">
+                      Sector One
+                    </p>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/work/enthusiast-music"
+                  className="flex items-center gap-4 group text-right"
+                >
+                  <div>
+                    <p className="text-white/60 text-xs uppercase tracking-wider">
+                      Next
+                    </p>
+                    <p className="text-white group-hover:text-white/80 transition-colors text-sm">
+                      Enthusiast Music
+                    </p>
+                  </div>
+                  <div className="w-16 h-16 rounded-lg overflow-hidden bg-[#1a1a1a] flex-shrink-0">
+                    <Image
+                      src="/img/Project/Project 4 Enthusiast Music.webp"
+                      alt="Next project"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
