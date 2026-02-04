@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { Cursor } from "@/components/cursor";
@@ -95,8 +94,6 @@ const projectsData: Project[] = [
 export default function WorkPage() {
   const rowsRef = useRef<(HTMLElement | null)[]>([]);
   const highlightsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const previewRef = useRef<HTMLDivElement | null>(null);
-  const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   const primaryText = useMemo(() => "#ffffff", []);
@@ -196,52 +193,6 @@ export default function WorkPage() {
     });
   };
 
-  const showPreview = (project: Project, event: React.MouseEvent) => {
-    if (isMobile) return; // Désactiver sur mobile
-    const preview = previewRef.current;
-    if (!preview) return;
-
-    gsap.set(preview, {
-      x: event.clientX + 24,
-      y: event.clientY - 24,
-      scale: 0.8,
-      rotate: -2,
-    });
-
-    gsap.to(preview, {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      duration: 0.35,
-      ease: "power3.out",
-    });
-
-    setActiveProject(project);
-  };
-
-  const movePreview = (event: React.MouseEvent) => {
-    if (isMobile) return; // Désactiver sur mobile
-    if (!previewRef.current || !activeProject) return;
-    gsap.to(previewRef.current, {
-      x: event.clientX + 24,
-      y: event.clientY - 24,
-      duration: 0.5,
-      ease: "power3.out",
-    });
-  };
-
-  const hidePreview = () => {
-    if (isMobile) return; // Désactiver sur mobile
-    if (!previewRef.current) return;
-    gsap.to(previewRef.current, {
-      opacity: 0,
-      scale: 0.85,
-      rotate: 3,
-      duration: 0.25,
-      ease: "power2.out",
-    });
-    setActiveProject(null);
-  };
 
   return (
     <>
@@ -275,17 +226,14 @@ export default function WorkPage() {
                   href={project.link}
                   className="project-row"
                   onClick={handleClick}
-                  onMouseEnter={(event) => {
+                  onMouseEnter={() => {
                     if (!isMobile) {
                       showHighlight(index);
-                      showPreview(project, event);
                     }
                   }}
-                  onMouseMove={movePreview}
                   onMouseLeave={() => {
                     if (!isMobile) {
                       hideHighlight(index);
-                      hidePreview();
                     }
                   }}
                   ref={(el) => {
@@ -316,19 +264,6 @@ export default function WorkPage() {
           </div>
         </div>
 
-        <div className="floating-preview hidden md:block" ref={previewRef}>
-          {activeProject && (
-            <Image
-              key={activeProject.id}
-              src={activeProject.image}
-              alt={activeProject.title}
-              fill
-              sizes="260px"
-              className="floating-preview__img"
-              priority
-            />
-          )}
-        </div>
       </main>
     </>
   );
