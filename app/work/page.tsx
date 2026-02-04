@@ -97,10 +97,23 @@ export default function WorkPage() {
   const highlightsRef = useRef<(HTMLDivElement | null)[]>([]);
   const previewRef = useRef<HTMLDivElement | null>(null);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const primaryText = useMemo(() => "#ffffff", []);
   const secondaryText = useMemo(() => "#ffffff", []);
   const darkText = useMemo(() => "#0a0a0a", []);
+
+  // Détecter si on est sur mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Trier les projets par année (2024 d'abord, puis 2025)
   const sortedProjects = useMemo(() => {
@@ -184,6 +197,7 @@ export default function WorkPage() {
   };
 
   const showPreview = (project: Project, event: React.MouseEvent) => {
+    if (isMobile) return; // Désactiver sur mobile
     const preview = previewRef.current;
     if (!preview) return;
 
@@ -206,6 +220,7 @@ export default function WorkPage() {
   };
 
   const movePreview = (event: React.MouseEvent) => {
+    if (isMobile) return; // Désactiver sur mobile
     if (!previewRef.current || !activeProject) return;
     gsap.to(previewRef.current, {
       x: event.clientX + 24,
@@ -216,6 +231,7 @@ export default function WorkPage() {
   };
 
   const hidePreview = () => {
+    if (isMobile) return; // Désactiver sur mobile
     if (!previewRef.current) return;
     gsap.to(previewRef.current, {
       opacity: 0,
@@ -281,7 +297,7 @@ export default function WorkPage() {
           </div>
         </div>
 
-        <div className="floating-preview" ref={previewRef}>
+        <div className="floating-preview hidden md:block" ref={previewRef}>
           {activeProject && (
             <Image
               key={activeProject.id}
