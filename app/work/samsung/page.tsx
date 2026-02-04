@@ -484,7 +484,7 @@ export default function SamsungPage() {
               {/* Paragraphe descriptif avec les mêmes propriétés que la page d'accueil */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase hero-text-paragraph"
                 style={{ overflow: 'visible', paddingBottom: '0.3em' }}
               >
                 <span>We</span> turned a live activation into a high-performing content library for <span className="!lowercase">samsung</span> and <span className="!lowercase">sharingbox</span>.
@@ -690,7 +690,7 @@ export default function SamsungPage() {
             <div className="pl-[15%] md:pl-[20%] lg:pl-0 max-w-[50%]">
               <p 
                 ref={jerseyTextRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed lowercase hero-text-paragraph-bottom"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed lowercase hero-text-paragraph-bottom"
                 style={{ overflow: 'visible', paddingBottom: '0.2em' }}
               >
                 <span>Every</span> activation deserves a story that lives beyond the day. We capture it end-to-end and deliver assets made for social and marketing.

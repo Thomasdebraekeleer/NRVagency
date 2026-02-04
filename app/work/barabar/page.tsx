@@ -398,7 +398,7 @@ export default function BarabarPage() {
               {/* Paragraphe descriptif avec les mêmes propriétés que la page d'accueil */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
               >
                 <span className="!lowercase">Barabar</span> is an iconic neighborhood bar in Uccle, Brussels, known for its lively atmosphere and daily happy hour. A local institution for decades, it&apos;s the kind of place people come back to for afterworks, nights out, and the warm &quot;regulars&quot; vibe.
               </p>

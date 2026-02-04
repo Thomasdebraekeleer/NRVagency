@@ -386,7 +386,7 @@ export default function PropertyHunterPage() {
               {/* Paragraphe descriptif */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
               >
                 <span className="!lowercase">Property Hunter</span> is a Brussels-based, 100% buyer-side real estate hunting agency, helping clients find the right property faster and more securely. From targeted search and pre-visits to due diligence and price negotiation, they guide buyers through every step up to the final deed.
               </p>

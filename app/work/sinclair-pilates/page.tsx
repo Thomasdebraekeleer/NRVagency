@@ -332,7 +332,7 @@ export default function SinclairPilatesPage() {
               {/* Paragraphe descriptif avec les mêmes propriétés que la page d'accueil */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
               >
                 <span className="!lowercase">sinclair pilates</span> is a premium Reformer Pilates destination, <span>combining</span> expert coaching and a refined experience <span>to</span> build stronger, more aligned bodies.
               </p>

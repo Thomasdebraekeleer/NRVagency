@@ -386,7 +386,7 @@ export default function Le1745Page() {
               {/* Paragraphe descriptif */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
               >
                 <span className="!lowercase">Le 17.45</span> is an apéro-focused restaurant concept where guests compose their own cheese and charcuterie boards from a carefully curated selection, designed for sharing in a cozy, good-vibes setting.
               </p>

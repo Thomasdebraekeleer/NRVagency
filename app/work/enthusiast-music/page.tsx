@@ -464,7 +464,7 @@ export default function EnthusiastMusicPage() {
               {/* Paragraphe descriptif avec les mêmes propriétés que la page d'accueil */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase hero-text-paragraph"
                 style={{ overflow: 'visible', paddingBottom: '0.3em' }}
               >
                 <span>Enthusiast Music</span> is a leading production and management company for bands and artists, shaping <span className="!lowercase">Belgium</span>&apos;s vibrant live music scene with unparalleled expertise and passion.
@@ -675,7 +675,7 @@ export default function EnthusiastMusicPage() {
             <div className="pl-[15%] md:pl-[20%] lg:pl-0 max-w-[50%]">
               <p 
                 ref={jerseyTextRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed lowercase hero-text-paragraph-bottom"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed lowercase hero-text-paragraph-bottom"
                 style={{ overflow: 'visible', paddingBottom: '0.2em' }}
               >
                 <span>Enthusiast Music</span> now has a digital home that feels as bold and curated as the artists it represents built to spark attention and make every visit count. It&apos;s a clean, scalable platform designed to grow with the label and turn discovery into real engagement.

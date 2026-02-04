@@ -471,7 +471,7 @@ export default function AliasingPage() {
               {/* Paragraphe descriptif avec les mêmes propriétés que la page d'accueil */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase hero-text-paragraph"
                 style={{ overflow: 'visible', paddingBottom: '0.3em' }}
               >
                 <span className="!lowercase">Aliasing</span> is a Swiss digital content creation studio delivering a full 360° creative pipeline from concept and design to 2D/3D motion, all the way to final delivery. With a strong eye for aesthetics and brand storytelling, they create high-end visuals and content for premium brands, including luxury and beyond.

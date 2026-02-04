@@ -411,7 +411,7 @@ export default function SectorOnePage() {
               {/* Paragraphe descriptif avec les mêmes propriétés que la page d'accueil */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
               >
                 <span className="!lowercase">sector one</span> is the leading esports organization in Belgium, <span>with</span> a strong presence across the French-speaking competitive scene. <span>with</span> multiple titles and appearances in high-profile leagues, <span className="!lowercase">sector one</span> is the leader of esports in the Benelux.
               </p>

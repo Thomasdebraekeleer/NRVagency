@@ -398,7 +398,7 @@ export default function StudioMatongePage() {
               {/* Paragraphe descriptif avec les mêmes propriétés que la page d'accueil */}
               <p 
                 ref={textRef}
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
+                className="text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden hero-text-paragraph"
               >
                 <span className="!lowercase">Studio Matongé</span> is a Franco-Belgian home décor brand that creates handcrafted pieces by celebrating and connecting African and European artisanal know-how. It offers beautiful, durable, and meaningful objects made using traditional techniques.
               </p>
