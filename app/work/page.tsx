@@ -66,6 +66,30 @@ const projectsData: Project[] = [
     image: "/img/Project/Project 7 Studio Matongé.webp",
     link: "/work/studio-matonge",
   },
+  {
+    id: 7,
+    title: "Barabar",
+    categories: ["Content Production", "Social Media"],
+    year: 2024,
+    image: "/img/Project/Barabar/Photo header barabar.png",
+    link: "/work/barabar",
+  },
+  {
+    id: 8,
+    title: "Le 17.45",
+    categories: ["Content Production", "Social Media"],
+    year: 2025,
+    image: "/img/Project/Le 17.45/Photo header 17.45.png",
+    link: "/work/le-17-45",
+  },
+  {
+    id: 9,
+    title: "Property Hunter",
+    categories: ["Content Production", "Social Media"],
+    year: 2025,
+    image: "/img/Project/Property hunter/Photo header Property Hunter.png",
+    link: "/work/property-hunter",
+  },
 ];
 
 export default function WorkPage() {
