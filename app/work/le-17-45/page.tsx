@@ -221,6 +221,10 @@ export default function Le1745Page() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (isMenuOpen) return;
+    
+    // Désactiver le smooth scroll sur mobile (scroll natif)
+    const isMobile = window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) return; // Scroll natif sur mobile
 
     gsap.registerPlugin(ScrollTrigger);
     

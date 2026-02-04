@@ -256,44 +256,63 @@ export default function WorkPage() {
           </div>
 
           <div className="project-list">
-            {sortedProjects.map((project, index) => (
-              <Link
-                key={project.id}
-                href={project.link}
-                className="project-row"
-                onMouseEnter={(event) => {
+            {sortedProjects.map((project, index) => {
+              const handleClick = (e: React.MouseEvent) => {
+                if (isMobile) {
+                  e.preventDefault();
+                  // Démarrer l'animation highlight
                   showHighlight(index);
-                  showPreview(project, event);
-                }}
-                onMouseMove={movePreview}
-                onMouseLeave={() => {
-                  hideHighlight(index);
-                  hidePreview();
-                }}
-                ref={(el) => {
-                  rowsRef.current[index] = el;
-                }}
-              >
-                <div
-                  className="project-highlight"
-                  ref={(el) => {
-                    highlightsRef.current[index] = el;
-                  }}
-                />
+                  // Attendre que l'animation se termine (0.45s) puis naviguer
+                  setTimeout(() => {
+                    window.location.href = project.link;
+                  }, 500); // Un peu plus que la durée de l'animation pour être sûr
+                }
+              };
 
-                <div className="project-content">
-                  <p className="project-title">{project.title}</p>
-                  <div className="project-tags">
-                    {project.categories.map((cat) => (
-                      <span key={cat} className="project-tag">
-                        {cat}
-                      </span>
-                    ))}
+              return (
+                <Link
+                  key={project.id}
+                  href={project.link}
+                  className="project-row"
+                  onClick={handleClick}
+                  onMouseEnter={(event) => {
+                    if (!isMobile) {
+                      showHighlight(index);
+                      showPreview(project, event);
+                    }
+                  }}
+                  onMouseMove={movePreview}
+                  onMouseLeave={() => {
+                    if (!isMobile) {
+                      hideHighlight(index);
+                      hidePreview();
+                    }
+                  }}
+                  ref={(el) => {
+                    rowsRef.current[index] = el;
+                  }}
+                >
+                  <div
+                    className="project-highlight"
+                    ref={(el) => {
+                      highlightsRef.current[index] = el;
+                    }}
+                  />
+
+                  <div className="project-content">
+                    <p className="project-title">{project.title}</p>
+                    <div className="project-tags">
+                      {project.categories.map((cat) => (
+                        <span key={cat} className="project-tag">
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="project-year">{project.year}</span>
                   </div>
-                  <span className="project-year">{project.year}</span>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
 

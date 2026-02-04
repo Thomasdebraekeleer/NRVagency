@@ -102,7 +102,7 @@ export function HeroMinimalist() {
           ref={textRef}
           className="text-white text-3xl md:text-4xl lg:text-5xl font-light leading-relaxed mb-8 lowercase overflow-hidden"
         >
-          NRV<sup className="text-lg md:text-xl lg:text-2xl">®</sup> is a creative agency specializing in branding, web design, and digital experiences.
+          <span className="whitespace-nowrap">NRV<sup className="text-lg md:text-xl lg:text-2xl">®</sup> is a creative</span> agency specializing in branding, web design, and digital experiences.
         </p>
 
         {/* Lien Latest Work avec flèche (seul le texte souligné) */}
